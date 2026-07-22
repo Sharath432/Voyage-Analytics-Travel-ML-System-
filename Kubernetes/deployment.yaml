@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: flight-price-app
+
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: flight-price
+
+  template:
+    metadata:
+      labels:
+        app: flight-price
+
+    spec:
+      containers:
+      - name: streamlit
+        image: flight-price-app:latest
+
+        ports:
+        - containerPort: 8501

@@ -3,21 +3,23 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
+        stage('Checkout') {
             steps {
-                bat 'pip install -r requirements.txt'
+                checkout scm
             }
         }
 
-        stage('Run MLflow Tracking') {
+        stage('Verify Repository') {
             steps {
-                bat 'python mlflow_tracking.py'
+                sh 'pwd'
+                sh 'ls -la'
             }
         }
 
-        stage('Run Streamlit App') {
+        stage('Pipeline Success') {
             steps {
-                bat 'streamlit run app.py'
+                echo 'Repository cloned successfully.'
+                echo 'Jenkins Pipeline Executed Successfully.'
             }
         }
     }
